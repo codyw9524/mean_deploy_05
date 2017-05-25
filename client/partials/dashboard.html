@@ -1,0 +1,30 @@
+<div ng-controller="TopicsController as TC">
+	<div id="topics" ng-init="TC.index(); UC.session()">
+		<table>
+			<tr>
+				<th>Topic</th>
+				<th>User</th>
+				<th>Posts</th>
+			</tr>
+			<tr ng-repeat="topic in TC.topics track by $index">
+				<td><a href="#!/topics/{{ topic._id }}">{{ topic.topic }}</a></td>
+				<td>{{ topic.user.name }}</td>
+				<td>{{ topic.messages.length }}</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<h3>make a new topic</h3>
+		<form ng-submit="TC.create(TC.newTopic)">
+			<div>
+				<label>Topic</label>
+				<input type="text" ng-model="TC.newTopic.topic">
+			</div>
+			<div>
+				<label>Description</label>
+				<input type="text" ng-model="TC.newTopic.description">
+			</div>
+			<input type="submit" value="Create Topic">
+		</form>
+	</div>
+</div>
